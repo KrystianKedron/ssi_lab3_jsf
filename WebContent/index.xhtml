@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	 	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
+	 	crossorigin="anonymous"></link>
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	 	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" 
+	 	crossorigin="anonymous"></link>
+	 	
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
+		crossorigin="anonymous"></script>
+</h:head>
+<h:body>
+<!-- 	<h:outputText value="#{indexBeam.name}">  </h:outputText>  -->
+		<div class="panel panel-danger" style="margin-left: 37%; margin-top: 5%; width: 300px">
+      	<div class="panel-heading">Swiateczna Anikieta</div>
+      	<div class="panel-body">
+			<h:form>
+				<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+				Imie
+				<h:inputText class="ui-inputtext" id="inputImie" style="margin-left: 2vmax" value="#{indexBeam.name}">
+					<f:validateLength maximum="12" minimum="3"></f:validateLength>
+	 			</h:inputText>
+				<h:messages class="alert alert-danger custom-alert" for="inputImie"></h:messages>
+				<br/>
+			
+				Nazwisko
+				<h:inputText class="ui-inputtext .col-md-3 .offset-md-3" id="inputNazwisko" style="margin-top:2%" value="#{indexBeam.second_name}">
+					<f:validateLength maximum="12" minimum="3"></f:validateLength>
+				</h:inputText>
+				
+				<h:messages class="alert alert-danger custom-alert" for="inputNazwisko"></h:messages>
+				
+				<p:growl id="msg"></p:growl>
+				<br/>
+				
+				<h:outputText style="margin-top: 1.5%" value="Lubisz swieta "></h:outputText>
+					<p:selectBooleanCheckbox style="margin-top: 1.5%" value="#{indexBeam.bool}">
+					<p:ajax update="msg,rat" listener="#{indexBeam.addMessage}"></p:ajax>
+				</p:selectBooleanCheckbox>
+				<br/>
+				
+				<p:rating id="rat" disabled="#{indexBeam.bool}" value="#{indexBeam.rating}">
+		            	<p:ajax event="rate" listener="#{indexBeam.onrate}" update="msg" />
+		            	<p:ajax event="cancel" listener="#{indexBeam.oncancel}" update="msg" />
+		       	</p:rating>
+				<br/>
+				
+		        <p:outputLabel style="margin-top:2%" for="advanced" value="Najbardziej lubie: "/>
+		        <div>
+		        	<p:selectOneMenu id="advanced" value="#{indexBeam.theme}" converter="themeConverter" panelStyle="width:180px"
+		                         effect="fade" var="t" style="width:160px" filter="true" filterMatchMode="startsWith">
+			            <f:selectItems value="#{indexBeam.themes}" var="theme" itemLabel="#{theme.displayName}" itemValue="#{theme}" />
+			 
+			            <p:column style="width:10%">
+			                <h:outputText styleClass="ui-#{t.name}" />
+			            </p:column>
+		
+			            <p:column>
+			                <h:outputText value="#{t.displayName}" />
+			            </p:column>
+		        	</p:selectOneMenu>
+	        	</div>
+		        <br/>
+		        
+		        <p:outputLabel for="basic" value="I jakie potrawy:" />
+		        <p:selectManyMenu id="basic" value="#{indexBeam.selectedOptions}">
+		           <f:selectItem itemLabel="Barsz czerwony" itemValue="1" />
+		           <f:selectItem itemLabel="Pierogi" itemValue="2" />
+		           <f:selectItem itemLabel="Karp" itemValue="3" />
+		           <f:valueChangeListener type="org.pk.ssi.lab05.DishesValueListener"></f:valueChangeListener> 
+		        </p:selectManyMenu>
+      			<br/>
+		        
+		        <h:commandButton class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" style="margin-left: 23%; margin-top: 1%; padding: 2px;" value="Wyslij odpowiedz" actionListener="#{indexBeam.updateChar}" action="sayHi">
+	     		</h:commandButton>
+	        	<br/>
+	        	
+			</h:form>
+		</div>
+	</div>
+</h:body>
+</html>

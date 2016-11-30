@@ -1,0 +1,35 @@
+.custom-alert{
+	width: 150px; 
+    margin-left: 20%;
+    margin-top: 8%;
+}
+
+.ui-santa{
+	content:url("http://www.zagrodakociewska.pl/images/kalendarz/mikolaj_112000.jpg");
+	height: 40px;
+	width: 40px;
+}
+
+.ui-star{
+	content:url("https://cdn.pixabay.com/photo/2014/10/18/10/23/star-493057_960_720.png");
+	height: 40px;
+	width: 40px;
+}
+
+.ui-snowman{
+	content:url("https://thumbs.dreamstime.com/x/santa-bawan-26670632.jpg");
+	height: 40px;
+	width: 40px;
+}
+
+.ui-angel{
+	content:url("https://image.freepik.com/darmowe-wektory/anio%C5%82ek_17-110192550.jpg");
+	height: 40px;
+	width: 40px;
+}
+
+.ui-chrismastree{
+	content:url("http://pm4-gorzow.pl/wp-content/uploads/2015/12/choinka1.jpg");
+	height: 40px;
+	width: 40px;
+}
